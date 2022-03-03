@@ -1,1 +1,2 @@
 # table-project
+deploy:
