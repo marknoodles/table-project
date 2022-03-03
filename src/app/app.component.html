@@ -1,0 +1,163 @@
+<div>
+  <button mat-raised-button (click)="addData()">Add data</button>
+</div>
+
+<table
+  mat-table
+  [dataSource]="sortedData"
+  matSort
+  (matSortChange)="sortData($event)"
+  class="mat-elevation-z8"
+>
+  <ng-container matColumnDef="position">
+    <th mat-header-cell *matHeaderCellDef>Номер</th>
+    <td mat-cell *matCellDef="let data; let i = index">{{ i + 1 }}</td>
+  </ng-container>
+
+  <ng-container matColumnDef="fio">
+    <th
+      mat-header-cell
+      *matHeaderCellDef
+      mat-sort-header
+      sortActionDescription="Sort by fio"
+    >
+      ФИО
+    </th>
+    <td mat-cell *matCellDef="let data; let i = index">
+      <span *ngIf="!data.isEdit">{{
+        data.author ? data.author.fio : "-"
+      }}</span>
+
+      <mat-form-field *ngIf="data.isEdit" class="example-full-width">
+        <input
+          matInput
+          [value]="data.author ? data.author.fio : '-'"
+          (change)="setDocData('fio', i, $event)"
+        />
+      </mat-form-field>
+    </td>
+  </ng-container>
+
+  <ng-container matColumnDef="post">
+    <th
+      mat-header-cell
+      *matHeaderCellDef
+      mat-sort-header
+      sortActionDescription="Sort by post"
+    >
+      Должность
+    </th>
+    <td mat-cell *matCellDef="let data; let i = index">
+      <span *ngIf="!data.isEdit">{{
+        data.author ? data.author.post : "-"
+      }}</span>
+
+      <mat-form-field *ngIf="data.isEdit" class="example-full-width">
+        <input
+          matInput
+          [value]="data.author ? data.author.post : '-'"
+          (change)="setDocData('post', i, $event)"
+        />
+      </mat-form-field>
+    </td>
+  </ng-container>
+
+  <ng-container matColumnDef="docName">
+    <th
+      mat-header-cell
+      *matHeaderCellDef
+      mat-sort-header
+      sortActionDescription="Sort by docName"
+    >
+      Название документа
+    </th>
+    <td mat-cell *matCellDef="let data; let i = index">
+      <span *ngIf="!data.isEdit">{{ data.docName }}</span>
+      <mat-form-field *ngIf="data.isEdit" class="example-full-width">
+        <input
+          matInput
+          [value]="data.docName"
+          (change)="setDocData('docName', i, $event)"
+        />
+      </mat-form-field>
+    </td>
+  </ng-container>
+
+  <ng-container matColumnDef="address">
+    <th
+      mat-header-cell
+      *matHeaderCellDef
+      mat-sort-header
+      sortActionDescription="Sort by address"
+    >
+      Адрес
+    </th>
+    <td mat-cell *matCellDef="let data; let i = index">
+      <span *ngIf="!data.isEdit">{{ data.address }}</span>
+      <mat-form-field *ngIf="data.isEdit" class="example-full-width">
+        <input
+          matInput
+          [value]="data.address"
+          (change)="setDocData('address', i, $event)"
+        />
+      </mat-form-field>
+    </td>
+  </ng-container>
+
+  <ng-container matColumnDef="docDate">
+    <th
+      mat-header-cell
+      *matHeaderCellDef
+      mat-sort-header
+      sortActionDescription="Sort by docDate"
+    >
+      Дата
+    </th>
+    <td mat-cell *matCellDef="let data; let i = index">
+      <span *ngIf="!data.isEdit">{{ data.docDate }}</span>
+      <mat-form-field *ngIf="data.isEdit" class="example-full-width">
+        <input
+          matInput
+          [value]="data.docDate"
+          (change)="setDocData('docDate', i, $event)"
+        />
+      </mat-form-field>
+    </td>
+  </ng-container>
+
+  <ng-container matColumnDef="status">
+    <th
+      mat-header-cell
+      *matHeaderCellDef
+      mat-sort-header
+      sortActionDescription="Sort by status"
+    >
+      Статус
+    </th>
+    <td mat-cell *matCellDef="let data; let i = index">
+      <span *ngIf="!data.isEdit">{{ statuses[data.status] }}</span>
+      <mat-form-field *ngIf="data.isEdit" class="example-full-width">
+        <input
+          matInput
+          [value]="data.status"
+          (change)="setDocData('status', i, $event)"
+        />
+      </mat-form-field>
+    </td>
+  </ng-container>
+
+  <ng-container matColumnDef="edit">
+    <th mat-header-cell *matHeaderCellDef></th>
+    <td
+      mat-cell
+      *matCellDef="let data; let i = index"
+      (click)="editDocument(i)"
+    >
+      <span *ngIf="!data.isEdit" class="material-icons">edit</span>
+      <span *ngIf="data.isEdit" class="material-icons">done</span>
+    </td>
+  </ng-container>
+
+  <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+  <tr mat-row *matRowDef="let row; columns: displayedColumns"></tr>
+</table>
