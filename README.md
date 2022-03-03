@@ -1,2 +1,2 @@
 # table-project
-deploy:
+deploy:https://tableproject.netlify.app/
