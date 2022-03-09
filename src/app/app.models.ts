@@ -1,4 +1,5 @@
 export interface Documents {
+  position: number;
   id: string;
   docCode: string;
   docDate: string;

@@ -1,5 +1,6 @@
 [
   {
+    "position":"1",
     "id": "yok0cpn5g7j0n1ck",
     "author": {
       "account": "semenov_gn",
@@ -15,6 +16,7 @@
     "isSpecial": true
   },
   {
+    "position":"2",
     "id": "xyxepbuv9s45ake7",
     "author": {
       "account": "antonov_ds",
@@ -30,6 +32,7 @@
     "isSpecial": false
   },
   {
+    "position":"3",
     "id": "a1thght7p61v5mev",
     "author": null,
     "docCode": "93rdd6y56gn5t1xdgxm1ow9m9z9rq7ip",

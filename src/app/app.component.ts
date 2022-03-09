@@ -9,12 +9,21 @@ import { DocService } from './app.service';
   styleUrls: ['./app.component.scss'],
 })
 export class AppComponent implements OnInit {
-  public positionNumber: number = 1;
+  public pageStart: number = 0;
+  public pageEnd: number = 5;
+  public pageSize: number = 5;
   public editDoc: boolean = false;
+
   public statuses = {
-    registred: 'Зарегистрирован',
+    registred: 'Записан',
     accepted: 'Принят',
   };
+
+  public viewStatus = [
+    { value: 'registred', viewValue: 'Записан' },
+    { value: 'accepted', viewValue: 'Принят' },
+  ];
+
   public displayedColumns: string[] = [
     'position',
     'fio',
@@ -61,6 +70,12 @@ export class AppComponent implements OnInit {
           );
         case 'docName':
           return this.compareString(a.docName, b.docName, isAsc);
+        case 'position':
+          return this.compareString(
+            String(a.position),
+            String(b.position),
+            isAsc
+          );
         case 'address':
           return this.compareString(a.address, b.address, isAsc);
         case 'docDate':
@@ -83,6 +98,7 @@ export class AppComponent implements OnInit {
 
   public addData() {
     let newDoc: Documents = {
+      position: this.sortedData.length + 1,
       id: '',
       docCode: '',
       docDate: '',
@@ -101,15 +117,26 @@ export class AppComponent implements OnInit {
 
     this.sortedData.push(newDoc);
     this.sortedData = [...this.sortedData]; // this refreshes the mat table as it doesn't see changes
+    this.dataSource.length++;
   }
   public editDocument(i: number) {
-    this.sortedData[i].isEdit = !this.sortedData[i].isEdit;
+    this.sortedData[i - 1].isEdit = !this.sortedData[i - 1].isEdit;
   }
   public setDocData(fieldName: string, i: number, event: any) {
-    if(fieldName === 'fio' || fieldName === "post"){
-      this.sortedData[i].author[fieldName] = event.target.value;
-    }else{
-      this.sortedData[i][fieldName] = event.target.value;
+    if (fieldName === 'fio' || fieldName === 'post') {
+      this.sortedData[i - 1].author[fieldName] = event.target.value;
+    } else if (fieldName === 'status') {
+      this.sortedData[i - 1][fieldName] = event.value;
+    } else {
+      this.sortedData[i - 1][fieldName] = event.target.value;
     }
+  }
+
+  viewTableData(event: any) {
+    if (this.pageSize !== event.pageSize) {
+      this.pageSize = event.pageSize;
+    }
+    this.pageEnd = (event.pageIndex + 1) * this.pageSize;
+    this.pageStart = event.pageIndex * this.pageSize;
   }
 }

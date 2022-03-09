@@ -11,6 +11,8 @@ import { MatButtonModule } from '@angular/material/button';
 import { MatIconModule } from '@angular/material/icon';
 import { MatInputModule } from '@angular/material/input';
 import { FormsModule } from '@angular/forms';
+import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
+import { MatSelectModule } from '@angular/material/select';
 @NgModule({
   declarations: [AppComponent],
   imports: [
@@ -24,6 +26,8 @@ import { FormsModule } from '@angular/forms';
     MatIconModule,
     MatInputModule,
     FormsModule,
+    MatProgressSpinnerModule,
+    MatSelectModule,
   ],
   providers: [],
   bootstrap: [AppComponent],
