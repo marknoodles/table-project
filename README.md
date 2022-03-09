@@ -1,3 +1,3 @@
 # table-project
-deploy:https://tableproject.netlify.app/ </br>
+deploy:https://testtableproj.netlify.app/ </br>
 code project in develop branch
