@@ -1,5 +1,5 @@
 .bg {
-  background-image: url(../assets/webp/bg3.webp);
+  background-image: url(../assets/bg3.jpg);
   background-repeat: no-repeat;
   height: 100vh;
 }
@@ -142,7 +142,7 @@ th.mat-header-cell {
     width: 52px;
   }
   .bg{
-    background-image: url(../assets/webp/bg-mob600.webp);
+    background-image: url(../assets/bg-mob600.jpg);
   }
 }
 
@@ -156,21 +156,21 @@ th.mat-header-cell {
 
 @media screen and (min-width: 600px) and(max-width: 800px) {
   .bg{
-    background-image: url(../assets/webp/bg-mob600.webp);
+    background-image: url(../assets/bg-mob600.jpg);
     background-size: 110%;
   }
 }
 
 @media screen and (min-width: 800px) and(max-width: 1320px) {
   .bg{
-    background-image: url(../assets/webp/bg-mob.webp);
+    background-image: url(../assets/bg-mob.jpg);
     background-size: 110%;
   }
 }
 
 @media screen and (min-width: 300px) and(max-width: 600px) {
   .bg{
-    background-image: url(../assets/webp/bg-mob300.webp);
+    background-image: url(../assets/bg-mob300.jpg);
     background-size: 200%;
   }
 }
